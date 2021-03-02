@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>公交充电站热管理优化方案及效果 – 一次能源</title>
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+
+
+
+<link rel="stylesheet" id="wp-block-library-css" href="http://primaryenergy.org/wp-includes/css/dist/block-library/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-pagenavi-css" href="http://primaryenergy.org/wp-content/plugins/wp-pagenavi/pagenavi-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="textwp-maincss-css" href="http://primaryenergy.org/wp-content/themes/textwp/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="fontawesome-css" href="http://primaryenergy.org/wp-content/themes/textwp/assets/css/all.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="textwp-webfont-css" href="//fonts.googleapis.com/css?family=Domine:400,700%7COswald:400,700%7CPatua+One%7CFrank+Ruhl+Libre:400,700&display=swap" type="text/css" media="all">
+<script type="text/javascript" src="http://primaryenergy.org/wp-includes/js/jquery/jquery.min.js" id="jquery-core-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-includes/js/jquery/jquery-migrate.min.js" id="jquery-migrate-js"></script>
+
+
+
+
+
+
+
+    <style type="text/css">
+            .textwp-site-title, .textwp-site-description {position: absolute;clip: rect(1px, 1px, 1px, 1px);}
+        </style>
+    <style type="text/css" id="custom-background-css">
+body.custom-background { background-image: url("http://primaryenergy.org/wp-content/themes/textwp/assets/images/background.jpg"); background-position: left top; background-size: auto; background-repeat: repeat; background-attachment: fixed; }
+</style>
+	</head>
+
+<body class="post-template-default single single-post postid-94 single-format-standard custom-background textwp-animated textwp-fadein textwp-group-blog textwp-theme-is-active textwp-tagline-inactive textwp-primary-menu-active textwp-primary-mobile-menu-active textwp-table-css-active" id="textwp-site-body" itemscope="itemscope" itemtype="http://schema.org/WebPage">
+<a class="skip-link screen-reader-text" href="#textwp-posts-wrapper">Skip to content</a>
+
+<div class="textwp-site-wrapper">
+
+
+<div class="textwp-container textwp-primary-menu-container textwp-textwp-clearfix">
+<div class="textwp-primary-menu-container-inside textwp-textwp-clearfix">
+
+<nav class="textwp-nav-primary" id="textwp-primary-navigation" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement" role="navigation" aria-label="Primary Menu">
+<div class="textwp-outer-wrapper">
+<button class="textwp-primary-responsive-menu-icon" aria-controls="textwp-menu-primary-navigation" aria-expanded="false">Menu</button>
+<ul id="textwp-menu-primary-navigation" class="textwp-primary-nav-menu textwp-menu-primary"><li id="menu-item-19" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-19"><a href="/">首页</a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-39"><a href="http://primaryenergy.org/policy">能源政策</a></li>
+<li id="menu-item-43" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-43"><a href="http://primaryenergy.org/dianyuanjishu">电源技术</a></li>
+<li id="menu-item-44" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-44"><a href="http://primaryenergy.org/dianwangjishu">电网技术</a></li>
+<li id="menu-item-45" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-45"><a href="http://primaryenergy.org/fuhejishu">负荷技术</a></li>
+<li id="menu-item-46" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-46"><a href="http://primaryenergy.org/chunengjishu">储能技术</a></li>
+</ul></div>
+</nav>
+
+</div>
+</div>
+
+
+<div class="textwp-container" id="textwp-header" itemscope="itemscope" itemtype="http://schema.org/WPHeader" role="banner">
+<div class="textwp-head-content textwp-textwp-clearfix" id="textwp-head-content">
+<div class="textwp-outer-wrapper">
+
+<div class="textwp-no-header-content">
+              <p class="textwp-site-title"><a href="http://primaryenergy.org/" rel="home">一次能源</a></p>
+                </div>
+
+</div>
+</div>
+</div>
+
+
+<div id="textwp-search-overlay-wrap" class="textwp-search-overlay">
+  <div class="textwp-search-overlay-content">
+    
+<form role="search" method="get" class="textwp-search-form" action="http://primaryenergy.org/">
+<label>
+    <span class="textwp-sr-only">Search for:</span>
+    <input type="search" class="textwp-search-field" placeholder="Search …" value="" name="s">
+</label>
+<input type="submit" class="textwp-search-submit" value="">
+</form>  </div>
+  <button class="textwp-search-closebtn" aria-label="Close Search" title="Close Search">×</button>
+</div>
+
+<div class="textwp-outer-wrapper">
+
+
+</div>
+
+<div class="textwp-outer-wrapper" id="textwp-wrapper-outside">
+
+<div class="textwp-container textwp-textwp-clearfix" id="textwp-wrapper">
+<div class="textwp-content-wrapper textwp-textwp-clearfix" id="textwp-content-wrapper">
+<div class="textwp-main-wrapper textwp-textwp-clearfix" id="textwp-main-wrapper" itemscope="itemscope" itemtype="http://schema.org/Blog" role="main">
+<div class="theiaStickySidebar">
+<div class="textwp-main-wrapper-inside textwp-textwp-clearfix">
+
+
+
+
+<div class="textwp-posts-wrapper" id="textwp-posts-wrapper">
+
+
+
+<article id="post-94" class="textwp-post-singular textwp-box post-94 post type-post status-publish format-standard has-post-thumbnail hentry category-fuhejishu tag-diandongqiche wpcat-7-id">
+<div class="textwp-box-inside">
+
+        <header class="entry-header">
+    <div class="entry-header-inside">
+        <div class="textwp-entry-meta-single textwp-entry-meta-single-top"><span class="textwp-entry-meta-single-cats"><i class="far fa-folder-open" aria-hidden="true"></i> <span class="textwp-sr-only">Posted in </span><a href="http://primaryenergy.org/fuhejishu" rel="category tag">负荷技术</a></span></div>
+                    <h1 class="post-title entry-title">公交充电站热管理优化方案及效果</h1>        
+                    <div class="textwp-entry-meta-single">
+    <span class="textwp-entry-meta-single-author"><i class="far fa-user-circle" aria-hidden="true"></i> <span class="author vcard" itemscope="itemscope" itemtype="http://schema.org/Person" itemprop="author"><a class="url fn n" href="http://primaryenergy.org/artcile/author/zhongguochuneng">中国储能网</a></span></span>    <span class="textwp-entry-meta-single-date"><i class="far fa-clock" aria-hidden="true"></i> 2021年3月2日</span>            </div>
+        </div>
+    </header>
+    
+    
+    <div class="entry-content textwp-textwp-clearfix">
+        
+<p><strong>1、研究背景</strong></p>
+
+
+
+<p>电动汽车产业是我国战略性新兴产业，关系到能源安全、环境保护与可持续发展、以及汽车产业关键部件及核心技术自主化等重大问题。预装式充电站是将电网内的电能输出到电动汽车内的重要设施，其功能是：将电网内的高压电转换为380V的低压电，经由充电机柜的模块功率调节转换为电动汽车的电能，预装式充电站内的散热设计对保护充电机组的安全稳定运行具有至关重要的作用。</p>
+
+
+
+<p>截止到2020年12月，公交充电站4个阶段共建站170多处，其中2处仅建设小车桩，2处为立体停车楼，其余场站为预装式充电站。充电站内充电机组全部投产启用后，发热设备多且比较集中，而通风散热设备却不能发挥到应有的设计水平，导致预装式充电设备内温度升高。</p>
+
+
+
+<p>夏季充电机柜散热隔室内温度达50℃，机柜内模块温度最高达75℃，监控系统常有温度过高报警，已经严重影响充电设备的安全运行和经济效益的正常发挥。</p>
+
+
+
+<p><strong>2、现有公交充电设备通风散热系统建设模式</strong></p>
+
+
+
+<p><strong>2.1现状设备内散热系统概况</strong></p>
+
+
+
+<p>充电站所带负载为450或360kW大功率直流充电桩，交流电通过充电机柜转换成直流电后输送到前端充电桩处，同时充电模块工作时将产生大量的热。充电机柜通风方向为前进后出，冷气由柜前进入为充电模块降温，充电模块工作时散发的热量由柜后排出，防止模块温度过高而出现降功率运行或停机。</p>
+
+
+
+<p>充电站内的散热系统主要通过强制风冷循环来实现的，由通风纱网、充电机组、散热风机等组成。冷空气被通风纱网过滤后经过工作时的充电模块变为热空气进入设备内的密封隔室，再由密封隔室顶部的风机排出。在预装式充电设备内设有充电机柜室，针对充电机柜的工作状况，将充电机柜室设计为“人”字型通风方式。机柜在室内采用背对背样式布置，柜体四周与箱体之间用岩棉板封堵，箱体顶部设置出风口，使空气形成侧进顶出自下而上的“人”字型对流通风方式。</p>
+
+
+
+<p><strong>2.2、现状充电设备调查</strong></p>
+
+
+
+<p><strong>2.2.1充电模块</strong></p>
+
+
+
+<p>经调研，充电机柜内模块满功率运行环境温度需求为50～55℃，高于此温度时模块降功率运行，环境温度高于70℃时模块停止工作。针对现状模块运行环境状况，需求提高模块通风散热效率。</p>
+
+
+
+<p><strong>2.2.2设备内空间调研</strong></p>
+
+
+
+<p>由于充电机柜后要预留检修维护通道，且通道宽度≥800mm，依据设备设计尺寸柜后密封隔室空间＞10.4m³，散热风机采用温度控制启停方式，室温检测器安装于充电机柜室内顶部。</p>
+
+
+
+<p><strong>2.3优化内容</strong></p>
+
+
+
+<p>充电模块工作时散发热量排放到柜后密闭空间内，由于柜后空间容积大，热气与原空间内空气混合后温度先降低再升高，风机温控器安装于室内顶部，与充电模块间距离远，造成风机温控器反应“迟滞”，设备整体热管理效率低。某场站电流、温度变化曲线图如图1所示。</p>
+
+
+
+<figure class="wp-block-image"><img src="http://www.escn.com.cn/upload/202102/18/202102182113231960.png" alt=""></figure>
+
+
+
+<p><strong>3、充电站热管理优化方案</strong></p>
+
+
+
+<p>首先对充电设备内热管理系统进行全面调查，绘制热管理系统图和温度感应监测图，然后进行现状充电模块工作散热量计算，热管理系统分析和评价。在此基础上提出了热管理系统技术改造的几个方案。对各方案从技术可行性、安全可靠性、经济实用性等方面综合比较选优，最后确定了最优方案。</p>
+
+
+
+<p>整个方案包括设备内充电机柜改造和温控探头布置位置改造2个部分。</p>
+
+
+
+<p><strong>3.1、设备内充电机柜改造</strong></p>
+
+
+
+<p>根据预装式充电站调研可知已投产4个阶段充电机柜排布方式有2种，单排布置和背靠背布置形式，单排布置柜后空间1100mm，背靠背布置柜后空间1300mm。</p>
+
+
+
+<p>预装式充电站可采用充电机柜后加装散热风道的方案。机柜内充电模块工作时散发热量由柜后散热风道集中后通过箱体顶部风机排出，散热风道可抑制热量在机柜后密封空间内扩散，减少风机排放热空气体积，缩短充电模块工作时散热风机启动时间差，提高充电模块和设备顶部风机工作效率。</p>
+
+
+
+<p>经过筛选后确定试点样站：牛堡屯802充电站（360kW）1#箱变（4桩），东高路专39充电站（360kW）1#箱变（4桩）。改造前需拆除原有充电机柜排风侧柜门，为配合安装散热风道更换新柜门。</p>
+
+
+
+<p><strong>3.2、温控探头布置方案</strong></p>
+
+
+
+<p>根据监测需求对原机柜室内温控探头位置重新分配，如图2所示。</p>
+
+
+
+<figure class="wp-block-image"><img src="http://www.escn.com.cn/upload/202102/18/202102182113053347.png" alt=""></figure>
+
+
+
+<p><strong>4、充电设备热管理优化后效果</strong></p>
+
+
+
+<p>散热风道安装后充电模块散发热量沿风道上升到箱体顶部，再由顶部风机排出。实现了热管理系统的稳定可靠，很大程度上缓解了风机温控器启动延时问题。</p>
+
+
+
+<p>通过对设备后台的监控系统运行状态指示来实时监控充电设备的散热状况是否处于良好状态，这些参数包括充电电流变化，设备进风口温度变化，模块运行温度变化，设备出风口温度变化，室外温度变化等。根据这些参数能大体了解该充电设备的散热状况，对即将出现由不良散热状况引起的故障提前预警，降低设备内元器件的故障率。</p>
+
+
+
+<p>充电模块散发的热量及时排入散热风道，避免了模块温度持续升高后降功率运行，甚至出现停机现象，排除了部分不安全隐患。</p>
+
+
+
+<p>样站安装散热风道后，柜后通道宽度为900mm，符合国家标准。风道护板采用卡扣固定方式，拆装方便，对充电机柜的检修、维护无影响。</p>
+
+
+
+<p>从主要电气性能特性曲线看出，热管理优化改造后，检修通道内温度变化浮动减小，不再受到模块散发热量影响。风机启动时间与充电桩充电时间间隔缩短。</p>
+
+
+
+<p>通过本次热管理系统优化、改造工作，建立了充电系统温控数据档案，实现了充电站热管理系统的网络优化。</p>
+
+
+
+<p><strong>5、应用总结和展望</strong></p>
+
+
+
+<p>改造后设备内空气流通更加顺畅，机柜工作时排风侧风道内温度升高迅速，风道外部温度变化小，提升了散热风机的工作效率，满足设备安全运行的环境温度；由于高温造成的模块工作停机次数明显减少，运行维护人员工作环境舒适度得到明显的改善。</p>
+
+
+
+<p>结合本次充电设备改造经验，在下一步充电设备设计过程中，可以在以下几个方面进行探索和尝试。</p>
+
+
+
+<p>对充电机柜的改造：将机柜内散热模块安装方式改为竖直固定，利用热空气的对流，使模块自带风扇将热量向上排出。同时对机柜外壳四周的缝隙做好密封措施，减少柜内热空气的溢出，顺利地将模块产生的热量集中排放到柜体顶部，有效地降低了机柜室的温度。</p>
+
+
+
+<p>对充电设备壳体的改造：设备内充电机柜采用单排布置方式，机柜四周用岩棉板封挡，形成单侧进风和单侧出风。加大出风口与进风口之间的距离，防止排出的热空气经由进风口再次进入设备内，形成环流，不利于机柜内模块的降温工作。更换进风口处的通风网材质为金属纱网，因为机柜内元器件带电，为安全起见，既要保证纱网的刚度，又要防止动物飞虫进入设备内，网目大小的选择出现矛盾。经研究，可以采用双层纱网，内网强度高，网目大；外网强度低网目小，散热和安全均得到了保证。</p>
+
+
+
+<p>对设备运行维护的改进：在柳絮、扬尘频发的地区同时注意增加清洗或更换纱网的次数，防止污秽对通风口的封堵，影响设备的通风效果。</p>
+
+
+
+<p>充电站是电动汽车产业发展的重要配套设施，关系到国家的能源安全、环境保护与可持续发展，同时承担着电网对分散充电负荷的集中管理，只有保障了充电设备的良好运行状态，才可能早日实现电动汽车的有序充（放）电。</p>
+    </div>
+
+    
+        <footer class="entry-footer">
+        <span class="textwp-tags-links"><i class="fas fa-tags" aria-hidden="true"></i> Tagged <a href="http://primaryenergy.org/artcile/tag/diandongqiche" rel="tag">电动汽车</a></span>    </footer>
+    
+    
+</div>
+</article>
+
+
+	<nav class="navigation post-navigation" role="navigation" aria-label="文章">
+		<h2 class="screen-reader-text">文章导航</h2>
+		<div class="nav-links"><div class="nav-previous"><a href="http://primaryenergy.org/artcile/chunengjishu/90.html" rel="prev">研究人员发明新型钠离子导体 可用于固态钠离子电池 →</a></div></div>
+	</nav>
+<div class="clear"></div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+
+
+<div class="textwp-sidebar-wrapper textwp-sidebar-widget-areas textwp-textwp-clearfix" id="textwp-sidebar-wrapper" itemscope="itemscope" itemtype="http://schema.org/WPSideBar" role="complementary">
+<div class="theiaStickySidebar">
+<div class="textwp-sidebar-wrapper-inside textwp-textwp-clearfix">
+
+<div id="search-2" class="textwp-side-widget widget textwp-box widget_search"><div class="textwp-box-inside">
+<form role="search" method="get" class="textwp-search-form" action="http://primaryenergy.org/">
+<label>
+    <span class="textwp-sr-only">Search for:</span>
+    <input type="search" class="textwp-search-field" placeholder="Search …" value="" name="s">
+</label>
+<input type="submit" class="textwp-search-submit" value="">
+</form></div></div>
+		<div id="recent-posts-2" class="textwp-side-widget widget textwp-box widget_recent_entries"><div class="textwp-box-inside">
+		<div class="textwp-widget-header"><h2 class="textwp-widget-title"><span class="textwp-widget-title-inside">近期文章</span></h2></div>
+		<ul>
+											<li>
+					<a href="http://primaryenergy.org/artcile/fuhejishu/94.html" aria-current="page">公交充电站热管理优化方案及效果</a>
+									</li>
+											<li>
+					<a href="http://primaryenergy.org/artcile/chunengjishu/90.html">研究人员发明新型钠离子导体 可用于固态钠离子电池</a>
+									</li>
+											<li>
+					<a href="http://primaryenergy.org/artcile/dianwangjishu/87.html">2MW/8MWh液流电池储能系统在加州微电网项目中试点使用</a>
+									</li>
+											<li>
+					<a href="http://primaryenergy.org/artcile/dianwangjishu/82.html">极端天气频发,电力系统如何撑住?</a>
+									</li>
+											<li>
+					<a href="http://primaryenergy.org/artcile/dianyuanjishu/76.html">质子交换膜燃料电池冷启动策略研究现状</a>
+									</li>
+					</ul>
+
+		</div></div><div id="categories-2" class="textwp-side-widget widget textwp-box widget_categories"><div class="textwp-box-inside"><div class="textwp-widget-header"><h2 class="textwp-widget-title"><span class="textwp-widget-title-inside">分类目录</span></h2></div>
+			<ul>
+					<li class="cat-item cat-item-8"><a href="http://primaryenergy.org/chunengjishu">储能技术</a> (2)
+</li>
+	<li class="cat-item cat-item-5"><a href="http://primaryenergy.org/dianyuanjishu">电源技术</a> (1)
+</li>
+	<li class="cat-item cat-item-6"><a href="http://primaryenergy.org/dianwangjishu">电网技术</a> (4)
+</li>
+	<li class="cat-item cat-item-4"><a href="http://primaryenergy.org/policy">能源政策</a> (2)
+</li>
+	<li class="cat-item cat-item-7"><a href="http://primaryenergy.org/fuhejishu">负荷技术</a> (2)
+</li>
+			</ul>
+
+			</div></div><div id="tag_cloud-3" class="textwp-side-widget widget textwp-box widget_tag_cloud"><div class="textwp-box-inside"><div class="textwp-widget-header"><h2 class="textwp-widget-title"><span class="textwp-widget-title-inside">标签</span></h2></div><div class="tagcloud"><a href="http://primaryenergy.org/artcile/tag/shanghai" class="tag-cloud-link tag-link-11 tag-link-position-1" style="font-size: 8pt;" aria-label="上海 (1个项目)">上海<span class="tag-link-count"> (1)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/quanguo" class="tag-cloud-link tag-link-15 tag-link-position-2" style="font-size: 8pt;" aria-label="全国 (1个项目)">全国<span class="tag-link-count"> (1)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/huaxuechuneng" class="tag-cloud-link tag-link-9 tag-link-position-3" style="font-size: 22pt;" aria-label="化学储能 (2个项目)">化学储能<span class="tag-link-count"> (2)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/dadianwangxiediaokongzhiyubaohu" class="tag-cloud-link tag-link-10 tag-link-position-4" style="font-size: 22pt;" aria-label="大电网协调控制与保护 (2个项目)">大电网协调控制与保护<span class="tag-link-count"> (2)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/weidianwang" class="tag-cloud-link tag-link-16 tag-link-position-5" style="font-size: 8pt;" aria-label="微电网 (1个项目)">微电网<span class="tag-link-count"> (1)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/ranliaodianchi" class="tag-cloud-link tag-link-14 tag-link-position-6" style="font-size: 8pt;" aria-label="燃料电池 (1个项目)">燃料电池<span class="tag-link-count"> (1)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/dianlishichang" class="tag-cloud-link tag-link-12 tag-link-position-7" style="font-size: 8pt;" aria-label="电力市场 (1个项目)">电力市场<span class="tag-link-count"> (1)</span></a>
+<a href="http://primaryenergy.org/artcile/tag/diandongqiche" class="tag-cloud-link tag-link-13 tag-link-position-8" style="font-size: 22pt;" aria-label="电动汽车 (2个项目)">电动汽车<span class="tag-link-count"> (2)</span></a></div>
+</div></div><div id="archives-2" class="textwp-side-widget widget textwp-box widget_archive"><div class="textwp-box-inside"><div class="textwp-widget-header"><h2 class="textwp-widget-title"><span class="textwp-widget-title-inside">文章归档</span></h2></div>
+			<ul>
+					<li><a href="http://primaryenergy.org/artcile/date/2021/03">2021年3月</a> (10)</li>
+	<li><a href="http://primaryenergy.org/artcile/date/2021/02">2021年2月</a> (1)</li>
+			</ul>
+
+			</div></div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="textwp-outer-wrapper">
+
+
+</div>
+
+
+
+<div class="textwp-textwp-clearfix" id="textwp-footer">
+<div class="textwp-foot-wrap textwp-container">
+<div class="textwp-outer-wrapper">
+
+  <p class="textwp-copyright">Copyright © 2021 一次能源 (PrimaryEnergy)</p>
+
+</div>
+</div>
+</div>
+
+
+</div>
+
+<button class="textwp-scroll-top" title="Scroll to Top"><i class="fas fa-arrow-up" aria-hidden="true"></i><span class="textwp-sr-only">Scroll to Top</span></button>
+
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/ResizeSensor.min.js" id="ResizeSensor-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/theia-sticky-sidebar.min.js" id="theia-sticky-sidebar-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/jquery.fitvids.min.js" id="fitvids-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/navigation.js" id="textwp-navigation-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/skip-link-focus-fix.js" id="textwp-skip-link-focus-fix-js"></script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-includes/js/imagesloaded.min.js" id="imagesloaded-js"></script>
+<script type="text/javascript" id="textwp-customjs-js-extra">
+/* <![CDATA[ */
+var textwp_ajax_object = {"ajaxurl":"http:\/\/primaryenergy.org\/wp-admin\/admin-ajax.php","primary_menu_active":"1","sticky_menu_active":"1","sticky_mobile_menu_active":"","sticky_sidebar_active":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/custom.js" id="textwp-customjs-js"></script>
+<script type="text/javascript" id="textwp-html5shiv-js-js-extra">
+/* <![CDATA[ */
+var textwp_custom_script_vars = {"elements_name":"abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output picture progress section summary template time video"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="http://primaryenergy.org/wp-content/themes/textwp/assets/js/html5shiv.js" id="textwp-html5shiv-js-js"></script>
+</body>
+</html>
